@@ -5,5 +5,7 @@
                 data: { turbo_frame: dom_id(Article.new) }%>
 
 <%= turbo_frame_tag Article.new %>
-<%= render @article %>
 
+<div id="articles">
+  <%= render @article %>
+</div>
