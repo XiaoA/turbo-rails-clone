@@ -1,0 +1,8 @@
+<%= form_with model: article do |form| %>
+  <%= article.errors.full_messages.to_sentence %>
+
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+
+  <%= form.submit "Save"  %>
+<% end %>
