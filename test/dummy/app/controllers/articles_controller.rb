@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  
   def index
     @article = Article.all
   end
@@ -41,10 +42,11 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
 
-      respond_to do |format|
-        format.turbo_stream
-      end
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.turbo_stream
     end
+  end
 
   private
 
