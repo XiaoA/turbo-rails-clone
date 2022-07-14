@@ -8,6 +8,14 @@ class TurboClone::Streams::TagBuilder
     action :replace, target, content, **rendering, &block
   end
 
+  def update(target, content = nil, **rendering, &block)
+    action :update, target, content, **rendering, &block
+  end
+
+  def prepend(target, content = nil, **rendering, &block)
+    action :prepend, target, content, **rendering, &block
+  end
+
   private
 
   def action(name, target, content = nil, **rendering, &block)
@@ -36,7 +44,7 @@ class TurboClone::Streams::TagBuilder
 
   def render_template(target, content = nil, **rendering, &block)
     if content
-      content
+      content.respond_to?(:to_partial_path) ? @view_context.render(partial: content, formats: :html) : content
     elsif block_given?
       @view_context.capture(&block)
     elsif rendering.any?
