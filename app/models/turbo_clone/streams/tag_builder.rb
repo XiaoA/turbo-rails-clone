@@ -16,16 +16,20 @@ class TurboClone::Streams::TagBuilder
     action :prepend, target, content, **rendering, &block
   end
 
+  def remove(target)
+    action :remove, target
+  end
+
   private
 
   def action(name, target, content = nil, **rendering, &block)
-    template = render_template(target, content, **rendering, &block)
+    template = render_template(target, content, **rendering, &block) unless name == :remove
 
     turbo_stream_action_tag(name, target: target, template: template)
   end
 
   def turbo_stream_action_tag(action, target:, template:)
-    template = "<template>#{template}</template>"
+    template = action == :remove ? "" : "<template>#{template}</template>"
 
     if target = convert_to_turbo_stream_dom_id(target)
       %(<turbo-stream target="#{target}" action="#{action}">#{template}</turbo-stream>).html_safe
