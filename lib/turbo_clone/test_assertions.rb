@@ -11,6 +11,7 @@ module TurboClone::TestAssertions
 
     selector = %(turbo-stream[action="#{action}"])
     selector << %([target="#{target.respond_to?(:to_key) ? dom_id(target) : target}"]) if target
+    
     assert_select selector, count: 1
   end
 end
