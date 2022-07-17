@@ -5,6 +5,10 @@ module TurboClone::Streams::Broadcasts
     broadcast_action_to(*streamables, action: :append, **options)
   end
 
+  def broadcast_prepend_to(*streamables, **options)
+    broadcast_action_to(*streamables, action: :prepend, **options)
+  end
+
   def broadcast_action_to(*streamables, action:, target: nil, **rendering)
     broadcast_stream_to *streamables, content: turbo_stream_action_tag(
       action, target: target, template: (rendering.any? ? render_format(:html, **rendering) : nil)
