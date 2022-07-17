@@ -3,7 +3,7 @@ module TurboClone::Broadcastable
 
   class_methods do
     def broadcast_target_default
-     model_name.plural 
+      model_name.plural 
     end
   end
   
@@ -18,6 +18,10 @@ module TurboClone::Broadcastable
   def broadcast_replace_to(*streamables, target: self, **rendering)
     TurboClone::StreamsChannel.broadcast_replace_to(*streamables, target: target, **broadcast_rendering_with_defaults(rendering))
   end
+
+  def broadcast_remove_to(*streamables, target: self)
+    TurboClone::StreamsChannel.broadcast_remove_to(*streamables, target: target)
+  end  
   
   private
 

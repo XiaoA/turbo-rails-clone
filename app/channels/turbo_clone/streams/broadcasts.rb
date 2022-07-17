@@ -11,6 +11,10 @@ module TurboClone::Streams::Broadcasts
 
   def broadcast_replace_to(*streamables, **options)
     broadcast_action_to(*streamables, action: :replace, **options)
+  end
+
+  def broadcast_remove_to(*streamables, **options)
+    broadcast_action_to(*streamables, action: :remove, **options)
   end  
 
   def broadcast_action_to(*streamables, action:, target: nil, **rendering)
