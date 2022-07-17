@@ -25,5 +25,13 @@ class TurboClone::BroadcastableTest < ActionCable::Channel::TestCase
     assert_broadcast_on "stream", turbo_stream_action_tag(:replace, target: article, template: render(article)) do
       article.broadcast_replace_to "stream"
     end
+  end
+
+test "#broadcast_remove_to" do
+    article = Article.create! content: "content"
+
+    assert_broadcast_on "stream", turbo_stream_action_tag(:remove, target: article, template: nil) do
+      article.broadcast_remove_to "stream"
+    end
   end  
 end
