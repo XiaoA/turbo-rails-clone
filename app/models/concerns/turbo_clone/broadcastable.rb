@@ -29,7 +29,11 @@ module TurboClone::Broadcastable
 
   def broadcast_prepend_later_to(*streamables, target: broadcast_target_default, **rendering)
     TurboClone::StreamsChannel.broadcast_prepend_later_to(*streamables, target: target, **broadcast_rendering_with_defaults(rendering))
-  end    
+  end
+
+  def broadcast_replace_later_to(*streamables, target: self, **rendering)
+    TurboClone::StreamsChannel.broadcast_replace_later_to(*streamables, target: target, **broadcast_rendering_with_defaults(rendering))
+  end
   
   private
 

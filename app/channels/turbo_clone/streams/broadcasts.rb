@@ -37,6 +37,10 @@ module TurboClone::Streams::Broadcasts
     broadcast_action_later_to(*streamables, action: :prepend, **options)
   end
 
+  def broadcast_replace_later_to(*streamables, **options)
+    broadcast_action_later_to(*streamables, action: :replace, **options)
+  end
+
   def broadcast_stream_to(*streamables, content:)
     ActionCable.server.broadcast stream_name_from(streamables), content    
   end
