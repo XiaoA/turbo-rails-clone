@@ -23,6 +23,24 @@ module TurboClone::Streams::Broadcasts
     )
   end
 
+  def broadcast_action_later_to(*streamables, action:, target: nil, **rendering)
+    TurboClone::Streams::ActionBroadcastJob.perform_later(
+      stream_name_from(streamables), action: action, target: target, **rendering
+    )
+  end
+
+  def broadcast_append_later_to(*streamables, **options)
+    broadcast_action_later_to(*streamables, action: :append, **options)
+  end
+
+  def broadcast_prepend_later_to(*streamables, **options)
+    broadcast_action_later_to(*streamables, action: :prepend, **options)
+  end
+
+  def broadcast_replace_later_to(*streamables, **options)
+    broadcast_action_later_to(*streamables, action: :replace, **options)
+  end
+
   def broadcast_stream_to(*streamables, content:)
     ActionCable.server.broadcast stream_name_from(streamables), content    
   end
