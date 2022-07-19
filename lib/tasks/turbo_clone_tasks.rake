@@ -1,5 +1,5 @@
 def run_turbo_install_template(path)
-  system "bin/rails app:template LOCATION="#{File.expand_path("../install/#{path}.rb", __dir__)}
+  system "bin/rails app:template LOCATION=#{File.expand_path("../install/#{path}.rb", __dir__)}"
 end
 
 def redis_installed?
