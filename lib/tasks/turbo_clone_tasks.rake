@@ -12,7 +12,7 @@ end
 
 def switch_on_redis_if_available
   if redis_installed?
-    Rake::Task[:turbo_clone:install:redis].invoke
+    Rake::Task["turbo_clone:install:redis"].invoke
   else
     puts "Run turbo_clone:install:redis to swtich on Redis and use it in development"
   end
