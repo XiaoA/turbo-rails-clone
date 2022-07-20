@@ -1,5 +1,5 @@
 def run_turbo_install_template(path)
-  system "bin/rails app:template LOCATION=#{File.expand_path("../install/#{path}.rb", __dir__)}"
+  system %(bin/rails app:template LOCATION=#{File.expand_path("../install/#{path}.rb", __dir__)})
 end
 
 def redis_installed?
@@ -14,7 +14,7 @@ def switch_on_redis_if_available
   if redis_installed?
     Rake::Task["turbo_clone:install:redis"].invoke
   else
-    puts "Run turbo_clone:install:redis to swtich on Redis and use it in development"
+    puts "Run turbo_clone:install:redis to switch on Redis and use it in development"
   end
 end
 

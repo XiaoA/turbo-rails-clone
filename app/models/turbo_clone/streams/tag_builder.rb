@@ -42,4 +42,3 @@ class TurboClone::Streams::TagBuilder
     end
   end
 end
-

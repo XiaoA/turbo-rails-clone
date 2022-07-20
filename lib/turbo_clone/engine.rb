@@ -30,8 +30,8 @@ module TurboClone
 
     initializer "turbo.renderer" do
       ActiveSupport.on_load :action_controller do
-        ActionController::Renderers.add :turbo_stream do |turbo_stream_html, options|
-          turbo_stream_html
+        ActionController::Renderers.add :turbo_stream do |turbo_streams_html, options|
+          turbo_streams_html
         end
       end
     end
